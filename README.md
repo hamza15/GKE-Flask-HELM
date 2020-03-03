@@ -38,7 +38,7 @@ Our backend application is a simple Flask application under the path app/app.py.
 
 ### Containerization:
 
-In order to keep our docker image light-weight and secure we're using an apline image which on its own is 97.8MB, and with our application on top amounts to 108MB. This removes the unnecessary overhead of tools that are not relevant to our application or our needs and provides a hardening approach to our application. Our containerization approach further comes in handy when we deploy to GKE and are able to call our image during deployment phase and allows for future revisions to be rolled out at faster rate as opposed to a bare metal deployment of our application.
+In order to keep our docker image light-weight and secure we're using an apline image which on its own is 97.8MB, and with our application on top amounts to 108MB. This removes the unnecessary overhead of tools that are not relevant to our application or our needs and provides a hardening approach to our application. Our containerization approach further comes in handy when we deploy to GKE and are able to call our image during deployment phase and allows for future revisions to be rolled out at a faster rate as opposed to a bare metal deployment of our application.
 
 ### Helm Chart:
 
