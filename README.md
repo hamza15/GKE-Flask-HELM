@@ -74,14 +74,14 @@ The above commands will build our docker image, tag it, configure our authentica
 
 **The below image shows the deployment created through Helm chart. 3 replicas are created through our deployment.**
 
-![alt text](images/deployment.png)
+![alt text](images/deployment.png)\
 
 
 
 
 **Under the logs tab for our deployment we can see the liveness and readiness probes calling our routes and receiving 200 OK responses.**
 
-![alt text](images/probe-logs.png)
+![alt text](images/probe-logs.png)\
 
 
 
