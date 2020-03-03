@@ -11,7 +11,7 @@ This project is composed of three parts:
 This guide will go over the process of creating the backend application which is a simple REST API with two routes /will which returns "Hello World" in JSON format and /ready route which returns "It works!" in JSON format. We will walk through the process of containerzing this application in a light weight and secure manner. And finaly, we'll cover templating the deployment phase of our application using Helm. Our templating will cover deploying TCP liveness and readiness probes on each routes to allow for durability and availability of our application.
 
 ## Prerequisites:
-The following is a list of dependencies to follow along:
+The following is a list of dependencies before we begin to deploy:
 
 - Deploy a kubernetes cluster on GCP using GKE. (This can be done with the below mentioned commands)
 - Navigate to Cloud Shell on GCP console and start a terminal. Run the following commands:
