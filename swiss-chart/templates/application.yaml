@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: swiss
-        image: gcr.io/kthw-260206/swiss@sha256:de8a78ccbe79846a094de63eaa0fcf510faf950d1fff80fb81ed57cb7c9dbb94
+        image: gcr.io/kthw-260206/swiss:v1
         ports:
         - containerPort: 5000
         livenessProbe:
