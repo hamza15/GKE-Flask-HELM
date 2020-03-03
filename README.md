@@ -21,7 +21,7 @@ The following is a list of dependencies to follow along:
         >  gcloud container clusters create <cluster-name> --num-nodes=1
         >  gcloud container clusters get-credentials <cluster-name>
 
-The above steps will configure your project, compute/zone, create a one-node cluster for this simple application and configure authentication credentials to interact with the cluster.
+The above steps will configure our project, compute/zone, create a one-node cluster for this simple application and configure authentication credentials to interact with the cluster.
 
 - Download Helm 3 from https://helm.sh/docs/intro/install/ by using wget. This will download the tar. Untar helm binary and place it in /usr/local/bin
 
@@ -46,7 +46,7 @@ Helm allows us to manage our application deployment to GKE. Helm Chart makes it 
 
 - Deployment:
 
-This will create a deployment of our application with 3 replicas of our container image running our application. We map the name of our chart from helpers.tpl here. We also create Liveness and Readiness probes to create a health check of our application. The liveness check runs at the route "/will" and restarts a container that will fail to respond with a 200 code for 3 attempts in a row over 10 attempts which equates to 30 seconds of failure. The Readiness check follows the same trend, however it's setup with the route "/ready" and has an initial delay of 30 seconds. Since our application is pretty lightweight with minimum dependencies, our initial delay is small, however for larger applications your initial delay would grow as your application might take a while to respond to requests.
+This will create a deployment of our application with 3 replicas of our container image running our application. We map the name of our chart from helpers.tpl here. We also create Liveness and Readiness probes to create a health check of our application. The liveness check runs at the route "/will" and restarts a container that will fail to respond with a 200 code for 3 attempts in a row over 10 attempts which equates to 30 seconds of failure. The Readiness check follows the same trend, however it's setup with the route "/ready" and has an initial delay of 30 seconds. Since our application is pretty lightweight with minimum dependencies, our initial delay is small, however for larger applications our initial delay would grow as our application might take a while to respond to requests.
 
 - Service:
 
@@ -66,12 +66,18 @@ The Service piece allows our deployment to be exposed via a Load Balancer deploy
 
 The above commands will build our docker image, tag it, configure our authentication with GCR and push our docker image to GCR. Please make note of the Image Tag you applied since this image tag is passed to Helm Chart to deploy our application.
 
-- To deploy your application, the steps are as simple as follows:
+- To deploy our application, the steps are as simple as follows:
 
         >  helm install k8s ./swiss-chart/
 
 The below image shows the deployment created through Helm chart. 3 replicas are created through our deployment.
 
 ![alt text](images/deployment.png)
+
+Under the logs tab for our deployment we can see the liveness and readiness probes calling our routes and receiving 200 OK responses.
+
+![alt text](images/probe-logs.png)
+
+Under Services & Ingress tab we can see our Service got created. The Load Balancer's IP is listed and we can use the IP in our browser to follow the routes <IP-Address>/will and <IP-Address>/ready to confirm our Application is exposed as promised. 
 
 ![alt text](images/service.png)
