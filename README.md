@@ -90,3 +90,13 @@ The above commands will build our docker image, tag it, configure our authentica
 **Under Services & Ingress tab we can see our Service got created. The Load Balancer's IP is listed and we can use the IP in our browser to follow the routes <IP-Address>/will and <IP-Address>/ready to confirm our Application is exposed as promised.**
 
 ![alt text](images/service.png)
+
+
+### Best Practices:
+
+This repo covers the bare minimum to get started with GKE. A simple application built with docker and deployed via Helm. Although a good place to start, there are quite a few things that can be automated/improved here. The following is an incomprehensive list of improvements to this repo:
+
+- Build GKE cluster via Terraform/Deployment Manager (Infrastructure as Code). Store the configuration in a Git repo which allows you to release safer, consistent and version controled Infrastructure.
+- Build a CI/CD pipeline that can be triggered using a commit to this repository. A webhook can be created to poll this repo for commits to lets say the "develop" branch. The trigger would start the CI/CD pipeline, build your docker image and call help to deploy an updated revision of your application. Jenkins, CircleCI and GitLab can be your starting point.
+- Multiple branches can be created of this pipeline to deploy Production ready, QA ready or Dev ready application code to their respective GKE Environments.
+- Logging and monitoring solutions like an ELK Stack can be deployed as the complexity of our application grows and we need to monitor infrastructure and application logs.
