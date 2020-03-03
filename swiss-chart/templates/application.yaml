@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "swiss-chart.fullname" . }}-deployment
+  labels:
+    app: {{ template "swiss-chart.fullname" . }}-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ template "swiss-chart.fullname" . }}-app
+  template:
+    metadata:
+      labels:
+        app: {{ template "swiss-chart.fullname" . }}-app
+    spec:
+      containers:
+      - name: swiss
+        image: gcr.io/kthw-260206/swiss@sha256:de8a78ccbe79846a094de63eaa0fcf510faf950d1fff80fb81ed57cb7c9dbb94
+        ports:
+        - containerPort: 5000
+        livenessProbe:
+          httpGet:
+            path: /will
+            port: 5000
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 5000
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "swiss-chart.fullname" . }}-service
+spec:
+  selector:
+    app: {{ template "swiss-chart.fullname" . }}-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
