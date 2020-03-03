@@ -42,7 +42,7 @@ In order to keep our docker image light-weight and secure we're using an apline 
 
 ### Helm Chart:
 
-Helm allows us to manage our application deployment to GKE. Helm Chart makes it easy to create, version, manage our application releases to Kubernetes. The Helm Chart defined our repo abstracts the deployment of our application inside /templates/application.yaml file. Our end goal is to pull our docker image from Google Container Registry (GCR) and create a Kubernetes deployment and a service to deploy and expose our application. Our application.yaml file is split into two parts:
+Helm allows us to manage our application deployment to GKE. Helm Chart makes it easy to create, version, and manage our application releases to Kubernetes. The Helm Chart defined in our repo abstracts the deployment of our application inside swiss-chart/templates/application.yaml file. Our end goal is to pull our docker image from Google Container Registry (GCR) and create a Kubernetes deployment and a service to deploy and expose our application. Our application.yaml file is split into two parts:
 
 - Deployment:
 
