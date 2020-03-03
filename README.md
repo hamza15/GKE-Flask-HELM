@@ -53,9 +53,25 @@ This will create a deployment of our application with 3 replicas of our containe
 The Service piece allows our deployment to be exposed via a Load Balancer deployed in GKE. We map port 80 on the Load Balancer to forward requests to target port 5000 of our deployment. 
 
 
+## Build and Deploy:
 
+- In our Cloud Shell terminal clone this repository. 
+- Run the following commands:
 
-![alt text](images/service.png)
+        >  cd GKE-Flask-Helm
+        >  docker build -t swiss:v1 .
+        >  docker tag swiss:v1 gcr.io/<project-id>swiss:v1
+        >  gcloud auth configure-docker
+        >  docker push gcr.io/<project-id>swiss:v1
 
+The above commands will build our docker image, tag it, configure our authentication with GCR and push our docker image to GCR. Please make note of the Image Tag you applied since this image tag is passed to Helm Chart to deploy our application.
+
+- To deploy your application, the steps are as simple as follows:
+
+        >  helm install k8s ./swiss-chart/
+
+The below image shows the deployment created through Helm chart. 3 replicas are created through our deployment.
 
 ![alt text](images/deployment.png)
+
+![alt text](images/service.png)
