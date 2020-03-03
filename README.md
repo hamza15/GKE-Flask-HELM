@@ -24,6 +24,9 @@ The following is a list of dependencies to follow along:
 The above steps will configure your project, compute/zone, create a one-node cluster for this simple application and configure authentication credentials to interact with the cluster.
 
 - Download Helm 3 from https://helm.sh/docs/intro/install/ by using wget. This will download the tar. Untar helm binary and place it in /usr/local/bin
+
+**Note: For security best practices we use Helm 3 and not Helm 2. This is in favor of the security concerns around Helm 2 using a server side named Tiller. You can ready more about Security concerns surrounding Helm 2 here: https://engineering.bitnami.com/articles/helm-security.html**
+
 - Cloud Shell comes with Docker, which we will use to build our docker image. 
 - We will also make use of Google Container Registry to host our image and pull during deployment phase.
 
@@ -39,7 +42,15 @@ In order to keep our docker image light-weight and secure we're using an apline 
 
 ### Helm Chart:
 
+Helm allows us to manage our application deployment to GKE. Helm Chart makes it easy to create, version, manage our application releases to Kubernetes. The Helm Chart defined our repo abstracts the deployment of our application inside /templates/application.yaml file. Our end goal is to pull our docker image from Google Container Registry (GCR) and create a Kubernetes deployment and a service to deploy and expose our application. Our application.yaml file is split into two parts:
 
+- Deployment:
+
+This will create a deployment of our application with 3 replicas of our container image running our application. We map the name of our chart from helpers.tpl here. We also create Liveness and Readiness probes to create a health check of our application. The liveness check runs at the route "/will" and restarts a container that will fail to respond with a 200 code for 3 attempts in a row over 10 attempts which equates to 30 seconds of failure. The Readiness check follows the same trend, however it's setup with the route "/ready" and has an initial delay of 30 seconds. Since our application is pretty lightweight with minimum dependencies, our initial delay is small, however for larger applications your initial delay would grow as your application might take a while to respond to requests.
+
+- Service:
+
+The Service piece allows our deployment to be exposed via a Load Balancer deployed in GKE. We map port 80 on the Load Balancer to forward requests to target port 5000 of our deployment. 
 
 
 
