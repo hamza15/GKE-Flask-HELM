@@ -27,6 +27,21 @@ The above steps will configure your project, compute/zone, create a one-node clu
 - Cloud Shell comes with Docker, which we will use to build our docker image. 
 - We will also make use of Google Container Registry to host our image and pull during deployment phase.
 
+## Design:
+
+### Backend Application:
+
+Our backend application is a simple Flask application under the path app/app.py. The app listens on port 5000 for the routes /will and /ready and returns 'Hello World' and 'It works!' respectively. The responses are in JSON format using JSONIFY.
+
+### Containerization:
+
+In order to keep our docker image light-weight and secure we're using an apline image which on its own is 97.8MB, and with our application on top amounts to 108MB. This removes the unnecessary overhead of tools that are not relevant to our application or our needs and provides a hardening approach to our application. Our containerization approach further comes in handy when we deploy to GKE and are able to call our image during deployment phase and allows for future revisions to be rolled out at faster rate as opposed to a bare metal deployment of our application.
+
+### Helm Chart:
+
+
+
+
 
 
 ![alt text](service.png)
