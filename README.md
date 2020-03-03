@@ -44,7 +44,7 @@ In order to keep our docker image light-weight and secure we're using an apline 
 
 
 
-![alt text](service.png)
+![alt text](images/service.png)
 
 
-![alt text](deployment.png)
+![alt text](images/deployment.png)
