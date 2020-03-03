@@ -70,13 +70,22 @@ The above commands will build our docker image, tag it, configure our authentica
 
         >  helm install k8s ./swiss-chart/
 
-The below image shows the deployment created through Helm chart. 3 replicas are created through our deployment.
+
+
+**The below image shows the deployment created through Helm chart. 3 replicas are created through our deployment.**
 
 ![alt text](images/deployment.png)
 
-Under the logs tab for our deployment we can see the liveness and readiness probes calling our routes and receiving 200 OK responses.
+
+
+
+**Under the logs tab for our deployment we can see the liveness and readiness probes calling our routes and receiving 200 OK responses.**
 
 ![alt text](images/probe-logs.png)
+
+
+
+
 
 **Under Services & Ingress tab we can see our Service got created. The Load Balancer's IP is listed and we can use the IP in our browser to follow the routes <IP-Address>/will and <IP-Address>/ready to confirm our Application is exposed as promised.**
 
