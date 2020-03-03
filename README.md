@@ -78,6 +78,6 @@ Under the logs tab for our deployment we can see the liveness and readiness prob
 
 ![alt text](images/probe-logs.png)
 
-Under Services & Ingress tab we can see our Service got created. The Load Balancer's IP is listed and we can use the IP in our browser to follow the routes <IP-Address>/will and <IP-Address>/ready to confirm our Application is exposed as promised. 
+**Under Services & Ingress tab we can see our Service got created. The Load Balancer's IP is listed and we can use the IP in our browser to follow the routes <IP-Address>/will and <IP-Address>/ready to confirm our Application is exposed as promised.**
 
 ![alt text](images/service.png)
