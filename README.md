@@ -23,7 +23,7 @@ The following is a list of dependencies before we begin to deploy:
 
 The above steps will configure our project, compute/zone, create a one-node cluster for this simple application and configure authentication credentials to interact with the cluster.
 
-- Download Helm 3 from https://helm.sh/docs/intro/install/ by using wget. This will download the tar. Untar helm binary and place it in /usr/local/bin
+- Download Helm 3 from https://helm.sh/docs/intro/install/ by using wget. This will download the tar file. Untar helm binary and place it in /usr/local/bin
 
 **Note: For security best practices we use Helm 3 and not Helm 2. This is in favor of the security concerns around Helm 2 using a server side named Tiller. You can ready more about Security concerns surrounding Helm 2 here: https://engineering.bitnami.com/articles/helm-security.html**
 
